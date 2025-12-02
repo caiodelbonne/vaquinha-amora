@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaquinha para amora</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Vaquinha para amora</h1>
+    </header>
+
+    <section class="story-section">
+        <p>Na ultima semana a Amora de raça Spitz Alemao começou a ficar doente. Teve algums colapso e chegou a desmaiar
+        </p>
+        <p>Na sexta feira ela fez uma consulta na clinica veterinaria e foi diagnosticada com um problema interno <span>
+                R$ 600,00</span> </p>
+        <p>No domingo de manha ela acordou soltando muito sangue. Levamos para a clinica veterinaria e foi para o
+            emergencia, o veterinario chegou a fazer exames, e escolheu fazer a internaçao.No final do dia tivemos a
+            noticia que ela precisava de uma cirurgia urgente pois estava com piometra <span>R$3.340,00</span> . Tivemos
+            que comprar uma bolsa de sangue para ela <span>R$895,00</span> </p>
+        <p>A cirurgia nao pode ser feita de forma gratuita em hospital publico devido a urgencia e corria risco de morte
+        </p>
+        <p>Diante do alto custo da cirurgia de exames, medicação e a bolsa de sangue que ela precisou, não conseguimos
+            pagar a divida</p>
+        <p>Por isso que criamos esta vaquinha para ajudar a gente a pagar os custos de hospital, exames e remedios</p>
+    </section>
+
+    <!-- Slider de Fotos -->
+    <section class="slider-section">
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slide active">
+                    <h2>Dia do sangramento</h2>
+                    <img src="./img/amora1.jpeg" alt="Amora">
+                </div>
+                <div class="slide">
+                    <h2>Conta de hospital</h2>
+                    <img src="./img/amora2.jpeg" alt="Amora">
+                </div>
+                <div class="slide">
+                    <h2>Amora no dia da cirurgia</h2>
+                    <img src="./img/amora3.jpeg" alt="Amora">
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="slider-btn prev" onclick="changeSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-btn next" onclick="changeSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Slide Indicators -->
+            <div class="slider-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <div class="pix-section">
+        <div class="pix-grid">
+            <div class="pix-image-container">
+                <img src="./img/amora.jpeg" alt="Obrigado Amora">
+            </div>
+            <div class="pix-content">
+                <h2>Doe qualquer valor</h2>
+                <div class="pix-container">
+                    <div class="pix-key-wrapper">
+                        <p class="pix-label">Chave PIX:</p>
+                        <p class="pix-key" id="pixKey">f92394da-882f-4983-8d42-8f4712199ea4</p>
+                    </div>
+                    <button class="copy-btn" onclick="copyPix()" id="copyBtn">
+                        <i class="fas fa-copy"></i>
+                        <span>Copiar</span>
+                    </button>
+                </div>
+                <p class="pix-name">Caio Cesar</p>
+            </div>
+        </div>
+        <div class="copy-feedback" id="copyFeedback">
+            <i class="fas fa-check-circle"></i>
+            Chave PIX copiada!
+        </div>
+    </div>
+
+    <script>
+        // Slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            // Wrap around
+            if (index >= slides.length) currentSlide = 0;
+            else if (index < 0) currentSlide = slides.length - 1;
+            else currentSlide = index;
+
+            // Update slides
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.classList.remove('active');
+                if (i === currentSlide) {
+                    indicator.classList.add('active');
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-advance slider every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // PIX Copy functionality
+        function copyPix() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            const copyBtn = document.getElementById('copyBtn');
+            const feedback = document.getElementById('copyFeedback');
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(pixKey).then(() => {
+                // Show feedback
+                feedback.classList.add('show');
+                copyBtn.classList.add('copied');
+
+                // Hide feedback after 2 seconds
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Erro ao copiar:', err);
+                alert('Erro ao copiar a chave PIX');
+            });
+        }
+    </script>
+</body>
+
+</html>
