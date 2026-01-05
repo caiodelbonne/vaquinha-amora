@@ -8,6 +8,25 @@
     box-sizing: border-box;
 }
 
+.cabecalho {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+.cabecalho img {
+    width: 70%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+.cabecalho .info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -133,6 +152,7 @@ header h1 {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -324,9 +344,12 @@ header h1 {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }
@@ -377,35 +400,35 @@ header h1 {
     header h1 {
         font-size: 1.8rem;
     }
-    
+
     .story-section,
     .pix-section {
         margin: 2rem 1rem;
         padding: 1.5rem;
     }
-    
+
     .slider-wrapper {
         height: 450px;
     }
-    
+
     .slide h2 {
         font-size: 1.5rem;
     }
-    
+
     .slide img {
         max-height: 300px;
     }
-    
+
     .slider-btn {
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
     }
-    
+
     .slider-btn.prev {
         left: 10px;
     }
-    
+
     .slider-btn.next {
         right: 10px;
     }
@@ -414,16 +437,16 @@ header h1 {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .pix-image-container img {
         max-height: 300px;
     }
-    
+
     .pix-key {
         font-size: 0.9rem;
         padding: 0.8rem;
     }
-    
+
     .copy-btn {
         padding: 0.8rem 2rem;
         font-size: 1rem;
@@ -434,11 +457,11 @@ header h1 {
     .slider-wrapper {
         height: 350px;
     }
-    
+
     .slide img {
         max-height: 220px;
     }
-    
+
     .slide h2 {
         font-size: 1.2rem;
         margin-bottom: 1rem;
